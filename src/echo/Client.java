@@ -1,8 +1,12 @@
 package echo;
 
-import java.io.FileOutputStream;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
@@ -20,10 +24,29 @@ public class Client {
 		
 		System.out.println("[서버에 연결되었습니다.]");
 		
-		//메시지 보내기
+		//메시지 보내기용 스트림
 		OutputStream os=socket.getOutputStream();
-		//OutputStream out=new FileOutputStream("파일 경로");
+		OutputStreamWriter osw=new OutputStreamWriter(os, "UTF-8");
+		BufferedWriter bw=new BufferedWriter(osw);
 		
+		//메시지 받기용 스트림
+		InputStream is = socket.getInputStream();
+		InputStreamReader isr=new InputStreamReader(is, "UTF-8");
+		BufferedReader br=new BufferedReader(isr);
+		
+		//메시지 보내기
+		bw.write("안녕하세요");
+		bw.newLine(); //줄바꿈 해야 인식
+		bw.flush(); //강제로 보냄
+		
+		//메시지 받기용
+		String reMsg=br.readLine();
+		System.out.println("server:["+reMsg+"]");
+		
+		//닫기
+		br.close();
+		bw.close();
+		socket.close();
 	}
 
 }
