@@ -10,6 +10,7 @@ import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Server {
 
@@ -39,6 +40,7 @@ public class Server {
 		OutputStreamWriter osw=new OutputStreamWriter(os, "UTF-8");
 		BufferedWriter bw=new BufferedWriter(osw);
 		
+		
 		//메시지 받기
 		String msg=br.readLine();
 		System.out.println("받은 메시지: "+msg);
@@ -47,7 +49,7 @@ public class Server {
 		bw.write(msg);
 		bw.newLine();
 		bw.flush();
-		
+
 		//닫기
 		bw.close();
 		br.close();

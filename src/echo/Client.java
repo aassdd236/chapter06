@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class Client {
 
@@ -34,8 +35,11 @@ public class Client {
 		InputStreamReader isr=new InputStreamReader(is, "UTF-8");
 		BufferedReader br=new BufferedReader(isr);
 		
+		Scanner s=new Scanner(System.in);
+		String str=s.nextLine();
+		
 		//메시지 보내기
-		bw.write("안녕하세요");
+		bw.write(str);
 		bw.newLine(); //줄바꿈 해야 인식
 		bw.flush(); //강제로 보냄
 		
@@ -44,6 +48,7 @@ public class Client {
 		System.out.println("server:["+reMsg+"]");
 		
 		//닫기
+		s.close();
 		br.close();
 		bw.close();
 		socket.close();
