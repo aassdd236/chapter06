@@ -1,6 +1,6 @@
 package com.javaex.ex01;
 
-public class DigitThread {
+public class DigitThread extends Thread {
 	
 	//필드
 	
@@ -8,7 +8,7 @@ public class DigitThread {
 	//DigitThread
 	
 	//메소드
-	public void numPrint() {
+	public void run() {
 		for(int i=0; i<30; i++) {
 			System.out.println(i+1);
 			try {
