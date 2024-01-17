@@ -40,15 +40,24 @@ public class Server {
 		OutputStreamWriter osw=new OutputStreamWriter(os, "UTF-8");
 		BufferedWriter bw=new BufferedWriter(osw);
 		
+		while(true) {
+			//메시지 받기
+			String msg=br.readLine();
+			if(msg==null) {
+				break;
+			}
+			System.out.println("받은 메시지: "+msg);
+			
+			//메시지 보내기
+			bw.write(msg);
+			bw.newLine();
+			bw.flush();
+
+		}
+		System.out.println("==============");
+		System.out.println("서버 종료");
 		
-		//메시지 받기
-		String msg=br.readLine();
-		System.out.println("받은 메시지: "+msg);
 		
-		//메시지 보내기
-		bw.write(msg);
-		bw.newLine();
-		bw.flush();
 
 		//닫기
 		bw.close();
